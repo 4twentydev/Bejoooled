@@ -33,59 +33,59 @@ function App() {
 
   return (
     <Router>
-      
       <ColorModeContext.Provider
-      // @ts-ignore
-      value={colorMode}
-    >
-    <div dir={i18n.t("dir")} className={i18n.t("font")}>
-      <ThemeProvider
         // @ts-ignore
-        theme={theme}
+        value={colorMode}
       >
-        <CssBaseline />
-        <LangProvider>
-          <SelectedProductProvider>
-            <CartProvider>
-              <WishlistProvider>
-                {isLoaded ? (
-                  <React.Fragment>
-                    <Routes>
-                      {routes.map((route, index) => (
-                        <Route
-                          key={index}
-                          path={route.path}
-                          element={<route.element />}
-                        >
-                          {route.children &&
-                            route.children.map((childRoute, childIndex) => (
-                              <Route
-                                key={childIndex}
-                                path={childRoute.path}
-                                element={<childRoute.element />}
-                              />
-                            ))}
-                        </Route>
-                      ))}
-                    </Routes>
-                    <ScrollUp />
-                  </React.Fragment>
-                ) : (
-                  <Loading />
-                )}
-              </WishlistProvider>
-            </CartProvider>
-          </SelectedProductProvider>
-        </LangProvider>
-        </ThemeProvider>
-    </div>
-    </ColorModeContext.Provider>
+        <div dir={i18n.t("dir")} className={i18n.t("font")}>
+          <ThemeProvider
+            // @ts-ignore
+            theme={theme}
+          >
+            <CssBaseline />
+            <LangProvider>
+              <SelectedProductProvider>
+                <CartProvider>
+                  <WishlistProvider>
+                    {isLoaded ? (
+                      <React.Fragment>
+                        <Routes>
+                          {routes.map((route, index) => (
+                            <Route
+                              key={index}
+                              path={route.path}
+                              element={<route.element />}
+                            >
+                              {route.children &&
+                                route.children.map((childRoute, childIndex) => (
+                                  <Route
+                                    key={childRoute.path || childIndex}
+                                    path={childRoute.path}
+                                    element={<childRoute.element />}
+                                  />
+                                ))}
+                            </Route>
+                          ))}
+                        </Routes>
+                        <ScrollUp />
+                      </React.Fragment>
+                    ) : (
+                      <Loading />
+                    )}
+                  </WishlistProvider>
+                </CartProvider>
+              </SelectedProductProvider>
+            </LangProvider>
+          </ThemeProvider>
+        </div>
+      </ColorModeContext.Provider>
     </Router>
   );
 }
 
 export default App;
-{/* <React.Fragment>
+{
+  /* <React.Fragment>
 <Routes>
   {routes.map((route, index) => (
     <Route
@@ -108,4 +108,5 @@ export default App;
 </React.Fragment>
 ) : (
 <Loading />
-)} */}
+)} */
+}
